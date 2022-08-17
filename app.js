@@ -19,6 +19,7 @@ app.use(express.static('public'));
 */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
 // url routing
 app.get('/', function (req, res) {
@@ -40,6 +41,6 @@ app.post('/email_post', function (req, res) {
   클라이언트에서 전송된 폼이 노드 서버로 오게 된 것
   이 값을 DB를 조회하거나 이 외의 것을 진행할 수 있다.
   */
-	// res.send('post response');
-	res.send('<h1>Welcome ' + req.body.email + '</h1>');
+	// res.send('<h1>Welcome ' + req.body.email + '</h1>');
+	res.render('email.ejs', { email: req.body.email });
 });
